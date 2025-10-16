@@ -1,0 +1,8 @@
+# public/.htaccess
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /crud-cuadrado/public
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . index.php [L]
+</IfModule>
