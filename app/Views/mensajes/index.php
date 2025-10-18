@@ -16,7 +16,15 @@
           <div class="row">
             <a class="btn" href="<?= (BASE_URL ? rtrim(BASE_URL,'/') : '') ?>/mensajes/show?id=<?= (int)$m['id'] ?>">Ver</a>
             <a class="btn secondary" href="<?= (BASE_URL ? rtrim(BASE_URL,'/') : '') ?>/mensajes/edit?id=<?= (int)$m['id'] ?>">Editar</a>
-            <a class="btn danger" href="<?= (BASE_URL ? rtrim(BASE_URL,'/') : '') ?>/mensajes/delete?id=<?= (int)$m['id'] ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este cuadrado?');">Eliminar</a>
+
+ 
+            <form action="<?= (BASE_URL ? rtrim(BASE_URL,'/') : '') ?>/mensajes/delete" 
+                  method="post" 
+                  onsubmit="return confirm('¿Estás seguro de que deseas eliminar este cuadrado?');" 
+                  style="display:inline;">
+              <input type="hidden" name="id" value="<?= (int)$m['id'] ?>">
+              <button class="btn danger" type="submit">Eliminar</button>
+            </form>
           </div>
         </article>
         <?php $contador++; ?>
@@ -24,4 +32,3 @@
     </div>
   <?php endif; ?>
 </section>
-

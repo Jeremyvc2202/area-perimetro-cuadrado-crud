@@ -26,10 +26,11 @@ class MensajeController extends Controller {
         try {
             $lado = trim($_POST['lado'] ?? '');
             $area = trim($_POST['area'] ?? '');
+            $perimetro = trim($_POST['perimetro'] ?? '');
             $fecha = trim($_POST['fecha'] ?? '');
-            if ($lado === '' || $area === '' || $fecha === '') throw new RuntimeException('Todos los campos son obligatorios.');
+            if ($lado === '' || $area === ''|| $perimetro === '' || $fecha === '') throw new RuntimeException('Todos los campos son obligatorios.');
             $imagenPath = $this->handleUpload($_FILES['imagen'] ?? null);
-            $id = Mensaje::create(['lado'=>$lado,'area'=>$area,'imagen'=>$imagenPath,'fecha'=>$fecha]);
+            $id = Mensaje::create(['lado'=>$lado,'area'=>$area,'perimetro'=>$perimetro,'fecha'=>$fecha]);
             $this->redirect('/mensajes/show?id=' . $id);
         } catch (Throwable $e) {
             $error = $e->getMessage();
@@ -53,17 +54,18 @@ class MensajeController extends Controller {
             $id = (int)($_POST['id'] ?? 0);
             $orig = Mensaje::find($id);
             if (!$orig) throw new RuntimeException('Mensaje no existe.');
-            $titulo = trim($_POST['titulo'] ?? '');
-            $descripcion = trim($_POST['descripcion'] ?? '');
+            $lado = trim($_POST['lado'] ?? '');
+            $area = trim($_POST['area'] ?? '');
+            $perimetro = trim($_POST['perimetro'] ?? '');
             $fecha = trim($_POST['fecha'] ?? '');
-            if ($titulo === '' || $descripcion === '' || $fecha === '') throw new RuntimeException('Todos los campos son obligatorios.');
+            if ($lado === '' || $area === ''|| $perimetro === '' || $fecha === '') throw new RuntimeException('Todos los campos son obligatorios.');
             $new = $this->handleUpload($_FILES['imagen'] ?? null);
             $imagenPath = ($new !== null) ? $new : ($orig['imagen'] ?? null);
-            Mensaje::updateById($id, ['titulo'=>$titulo,'descripcion'=>$descripcion,'imagen'=>$imagenPath,'fecha'=>$fecha]);
+            Mensaje::updateById($id, ['lado'=>$lado,'area'=>$area,'perimetro'=>$perimetro,'fecha'=>$fecha]);
             $this->redirect('/mensajes/show?id=' . $id);
         } catch (Throwable $e) {
             $error = $e->getMessage();
-            $mensaje = ['id'=>$_POST['id'] ?? 0, 'titulo'=>$_POST['titulo'] ?? '', 'descripcion'=>$_POST['descripcion'] ?? '', 'fecha'=>$_POST['fecha'] ?? '', 'imagen'=>$_POST['imagen_actual'] ?? null];
+            $mensaje = ['id'=>$_POST['id'] ?? 0, 'lado'=>$_POST['lado'] ?? '', 'area'=>$_POST['area'] ?? '','perimetro'=>$_POST['perimetro'] ?? '','fecha'=>$_POST['fecha'] ?? ''];
             $this->view('mensajes/edit', compact('mensaje','error'));
         }
     }

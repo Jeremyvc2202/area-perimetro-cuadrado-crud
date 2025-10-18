@@ -1,5 +1,4 @@
 <?php
-// config/config.php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'crud_cuadrado');
 define('DB_USER', 'root');

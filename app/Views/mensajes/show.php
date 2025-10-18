@@ -4,7 +4,7 @@
   <p>Área: <?= htmlspecialchars($mensaje['area']) ?></p>
   <p>Perímetro: <?= htmlspecialchars($mensaje['perimetro']) ?></p>
   <p class="muted">
-    Fecha: <?= htmlspecialchars($mensaje['fecha']) ?> • Creado: <?= htmlspecialchars($mensaje['created_at']) ?>
+    Fecha: <?= htmlspecialchars($mensaje['fecha']) ?>
   </p>
 
   <form method="post" action="<?= (BASE_URL ? rtrim(BASE_URL,'/') : '') ?>/mensajes/delete" onsubmit="return confirm('¿Eliminar este mensaje?');">
