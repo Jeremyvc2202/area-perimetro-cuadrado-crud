@@ -7,7 +7,7 @@
   <meta name="description">
   <meta name="author">
   <meta name="keywords">
-  <title>Hola Mundo MVC</title>
+  <title>Crud - Cuadrado</title>
   <link rel="icon" href="<?= BASE_URL ? rtrim(BASE_URL,characters: '/'): ''?>/imagenes/logo1.ico">
   <link rel="stylesheet" href="<?= BASE_URL ? rtrim(BASE_URL,'/') : '' ?>/assets/css/styles.css">
 </head>
